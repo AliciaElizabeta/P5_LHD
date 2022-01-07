@@ -27,6 +27,12 @@ import java.util.regex.Pattern;
 
 import es.ull.passengers.Passenger;
 
+/*! \brief Clase Flight 
+*
+* Contiene informacion relativa a los vuelos
+* como el numero del vuelo, los asientos, 
+* o los pasajeros en el.
+*/
 public class Flight {
 
     private String flightNumber;
@@ -36,6 +42,10 @@ public class Flight {
     private static String flightNumberRegex = "^[A-Z]{2}\\d{3,4}$";
     private static Pattern pattern = Pattern.compile(flightNumberRegex);
 
+    //! Constructor parametrizado de la clase.
+    /*!
+      Requiere el serial del vuelo y el numero de asientos.
+    */
     public Flight(String flightNumber, int seats) {
         Matcher matcher = pattern.matcher(flightNumber);
         if (!matcher.matches()) {
@@ -45,14 +55,26 @@ public class Flight {
         this.seats = seats;
     }
 
+    //! Método getFlightNumber.
+    /*!
+      Retorna el serial del numero.
+    */
     public String getFlightNumber() {
         return flightNumber;
     }
 
+    //! Método getNumberOfPassengers.
+    /*!
+      Retorna el numeros de pasajeros que actualmente hay en el vuelo.
+    */
     public int getNumberOfPassengers() {
         return passengers.size();
     }
 
+    //! Método addPassenger.
+    /*!
+      Añade un pasajero al vuelo y retorna true, en caso de no poder retorna false.
+    */
     public boolean addPassenger(Passenger passenger) {
         if (getNumberOfPassengers() >= seats) {
             throw new RuntimeException("Not enough seats for flight " + getFlightNumber());
@@ -61,6 +83,10 @@ public class Flight {
         return passengers.add(passenger);
     }
 
+    //! Método addPassenger.
+    /*!
+      Elimina un pasajero del vuelo, en caso de no ser posible retorna false.
+    */
     public boolean removePassenger(Passenger passenger) {
         passenger.setFlight(null);
         return passengers.remove(passenger);
