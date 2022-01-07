@@ -27,6 +27,12 @@ import java.util.regex.Pattern;
 
 import es.ull.flights.Flight;
 
+/*! \brief Clase Passenger 
+*
+* Contiene informacion relativa a los pasajeros
+* como un identificador, su nombre, el codigo de país y
+* el vuelo asignado si lo tienen.
+*/
 public class Passenger {
 
     private String identifier;
@@ -34,6 +40,10 @@ public class Passenger {
     private String countryCode;
     private Flight flight;
 
+    //! Constructor parametrizado de la clase.
+    /*!
+      Requiere el identificador del pasajero, su nombre y su país de origen.
+    */
     public Passenger(String identifier, String name, String countryCode) {
         if (!Arrays.asList(Locale.getISOCountries()).contains(countryCode)) {
             throw new RuntimeException("Invalid country code");
@@ -44,22 +54,42 @@ public class Passenger {
         this.countryCode = countryCode;
     }
 
+    //! Método getIdentifier.
+    /*!
+      Retorna el identificador del pasajero.
+    */
     public String getIdentifier() {
         return identifier;
     }
 
+    //! Método getName.
+    /*!
+      Retorna el nombre del pasajero.
+    */
     public String getName() {
         return name;
     }
 
+    //! Método getCountryCode.
+    /*!
+      Retorna el código del país del pasajero.
+    */
     public String getCountryCode() {
         return countryCode;
     }
 
+    //! Método getFlight.
+    /*!
+      Retorna el vuelo del pasajero si es que lo tiene.
+    */
     public Flight getFlight() {
         return flight;
     }
 
+    //! Método joinFlight
+    /*!
+      Añade al pasajero a un vuelo que se le indica por parametro.
+    */
     public void joinFlight(Flight flight) {
         Flight previousFlight = this.flight;
         if (null != previousFlight) {
@@ -75,10 +105,18 @@ public class Passenger {
         }
     }
 
+    //! Método setFlight
+    /*!
+      Establece el vuelo del pasajero como el vuelo que se pasa por parametro.
+    */
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
 
+    //! Método toString
+    /*!
+      Devuelve un string formateado con la informacion del pasajero.
+    */
     @Override
     public String toString() {
         return "Passenger " + getName() + " with identifier: " + getIdentifier() + " from " + getCountryCode();
