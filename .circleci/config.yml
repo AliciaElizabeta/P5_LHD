@@ -11,6 +11,5 @@ jobs:
       - run : mvn test package
       - run : mvn test
       - store_test_results:
-          path: test-results
       - store_artifacts:
           path:  target
